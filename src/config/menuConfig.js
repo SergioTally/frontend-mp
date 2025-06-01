@@ -11,7 +11,8 @@ import {
   Business,
 } from "@mui/icons-material";
 
-import Dashboard from "../pages/Dashboard";
+import Dashboard from "../pages/reporteria/Dashboard";
+import ReporteCasos from "../pages/reporteria/ReporteCasos";
 import PT_CASO from "../pages/gestion/Caso";
 import PT_ESTADO_CASO from "../pages/gestion/EstadoCaso";
 import PT_TIPO_CASO from "../pages/gestion/TipoCaso";
@@ -31,6 +32,12 @@ export const groupedMenu = {
       icon: <DashboardIcon />,
       path: "/dashboard",
       component: Dashboard,
+    },
+    {
+      label: "Reporte Casos",
+      icon: <Gavel />,
+      path: "/reporteria/pt-caso",
+      component: ReporteCasos,
     },
   ],
   Gestion: [
@@ -86,6 +93,11 @@ export const groupedMenu = {
       component: PT_PERSONA,
     },
     { label: "Logs", icon: <ListAlt />, path: "/pt-logs", component: PT_LOGS },
-    { label: "Bitacora", icon: <ListAlt />, path: "/Bitacora", component: Bitacora },
+    {
+      label: "Bitacora",
+      icon: <ListAlt />,
+      path: "/Bitacora",
+      component: Bitacora,
+    },
   ],
 };
