@@ -9,7 +9,10 @@ import {
   Typography,
   Stack,
   Button,
+  Grid,
+  Box,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const CustomTable = ({
   data = [],
@@ -20,7 +23,10 @@ const CustomTable = ({
   onShow,
   onEdit,
   onDelete,
+  extraActions = [],
+  tableBitacora,
 }) => {
+  const navigate = useNavigate();
   const renderCell = (item, col) => {
     const value = item[col.campo];
 
@@ -91,38 +97,117 @@ const CustomTable = ({
             {columns.map((col) => renderCell(item, col))}
 
             <TableCell>
-              <Stack direction="row" spacing={1}>
+              <Grid container spacing={1}>
                 {typeof onShow === "function" && (
-                  <Button
-                    size="small"
-                    variant="contained"
-                    color="info"
-                    onClick={() => onShow(item)}
-                  >
-                    Ver
-                  </Button>
+                  <Grid item xs={4}>
+                    <Button
+                      fullWidth
+                      size="small"
+                      variant="contained"
+                      color="info"
+                      sx={{
+                        minWidth: 80,
+                        height: 40,
+                        whiteSpace: "normal",
+                        wordWrap: "break-word",
+                        textAlign: "center",
+                        fontSize: "0.75rem",
+                      }}
+                      onClick={() => onShow(item)}
+                    >
+                      Ver
+                    </Button>
+                  </Grid>
                 )}
                 {typeof onEdit === "function" && (
-                  <Button
-                    size="small"
-                    variant="contained"
-                    color="secondary"
-                    onClick={() => onEdit(item)}
-                  >
-                    Editar
-                  </Button>
+                  <Grid item xs={4}>
+                    <Button
+                      fullWidth
+                      size="small"
+                      variant="contained"
+                      color="secondary"
+                      sx={{
+                        minWidth: 80,
+                        height: 40,
+                        whiteSpace: "normal",
+                        wordWrap: "break-word",
+                        textAlign: "center",
+                        fontSize: "0.75rem",
+                      }}
+                      onClick={() => onEdit(item)}
+                    >
+                      Editar
+                    </Button>
+                  </Grid>
                 )}
                 {typeof onDelete === "function" && (
-                  <Button
-                    size="small"
-                    variant="contained"
-                    color="error"
-                    onClick={() => onDelete(item.ID_USUARIO)}
-                  >
-                    Eliminar
-                  </Button>
+                  <Grid item xs={4}>
+                    <Button
+                      fullWidth
+                      size="small"
+                      variant="contained"
+                      color="error"
+                      sx={{
+                        minWidth: 80,
+                        height: 40,
+                        whiteSpace: "normal",
+                        wordWrap: "break-word",
+                        textAlign: "center",
+                        fontSize: "0.75rem",
+                      }}
+                      onClick={() => onDelete(item.ID_USUARIO || item.ID_CASO)}
+                    >
+                      Eliminar
+                    </Button>
+                  </Grid>
                 )}
-              </Stack>
+                {typeof tableBitacora && (
+                  <Grid item xs={4}>
+                    <Button
+                      fullWidth
+                      size="small"
+                      variant="outlined"
+                      color="primary"
+                      sx={{
+                        minWidth: 80,
+                        height: 40,
+                        whiteSpace: "normal",
+                        wordWrap: "break-word",
+                        textAlign: "center",
+                        fontSize: "0.75rem",
+                      }}
+                      onClick={() => {
+                        const tabla = columns.find(
+                          (c) => c.tipo === "hidden"
+                        )?.campo;
+                        const id = item[tabla];
+                        navigate(
+                          `/Bitacora?tabla=${tableBitacora}&identificador=${id}`
+                        );
+                      }}
+                    >
+                      Bitácora
+                    </Button>
+                  </Grid>
+                )}
+                {extraActions.map((actionFn, i) => (
+                  <Grid item xs={4} key={i}>
+                    {React.cloneElement(actionFn(item), {
+                      fullWidth: true,
+                      size: "small",
+                      sx: {
+                        minWidth: 160,
+                        height: 40,
+                        whiteSpace: "normal",
+                        wordWrap: "break-word",
+                        textAlign: "center",
+                        fontSize: "0.75rem",
+                        ...actionFn(item).props.sx,
+                      },
+                    })}
+                  </Grid>
+                ))}
+              </Grid>
             </TableCell>
           </TableRow>
         ))}

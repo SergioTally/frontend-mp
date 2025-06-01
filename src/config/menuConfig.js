@@ -22,6 +22,7 @@ import PT_ROLE from "../pages/catalogo/Roles";
 import PT_PERMISO from "../pages/catalogo/Permisos";
 import PT_PERSONA from "../pages/catalogo/Personas";
 import PT_LOGS from "../pages/Items";
+import Bitacora from "../pages/Bitacora";
 
 export const groupedMenu = {
   Dashboard: [
@@ -85,5 +86,6 @@ export const groupedMenu = {
       component: PT_PERSONA,
     },
     { label: "Logs", icon: <ListAlt />, path: "/pt-logs", component: PT_LOGS },
+    { label: "Bitacora", icon: <ListAlt />, path: "/Bitacora", component: Bitacora },
   ],
 };
