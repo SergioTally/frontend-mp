@@ -13,8 +13,8 @@ import {
 
 import Dashboard from "../pages/Dashboard";
 import PT_CASO from "../pages/Items";
-import PT_ESTADO_CASO from "../pages/Items";
-import PT_TIPO_CASO from "../pages/Items";
+import PT_ESTADO_CASO from "../pages/gestion/EstadoCaso";
+import PT_TIPO_CASO from "../pages/gestion/TipoCaso";
 import PT_FISCAL from "../pages/Items";
 import PT_FISCALIA from "../pages/Items";
 import PT_USUARIO from "../pages/catalogo/Usuarios";
