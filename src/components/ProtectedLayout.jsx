@@ -13,7 +13,6 @@ const ProtectedLayout = ({ children }) => {
         sx={{
           flexGrow: 1,
           p: 3,
-          ml: `${drawerWidth}px`,
           minHeight: "100vh",
           backgroundColor: "#f5f5f5",
         }}
