@@ -66,7 +66,9 @@ const FormDialog = ({
                           key={opt[optionValue]}
                           value={opt[optionValue]}
                         >
-                          {opt[optionLabel]}
+                          {typeof optionLabel === "function"
+                            ? optionLabel(opt)
+                            : opt[optionLabel]}
                         </MenuItem>
                       ))}
                     </TextField>

@@ -12,15 +12,15 @@ import {
 } from "@mui/icons-material";
 
 import Dashboard from "../pages/Dashboard";
-import PT_CASO from "../pages/Items";
+import PT_CASO from "../pages/gestion/Caso";
 import PT_ESTADO_CASO from "../pages/gestion/EstadoCaso";
 import PT_TIPO_CASO from "../pages/gestion/TipoCaso";
-import PT_FISCAL from "../pages/Items";
-import PT_FISCALIA from "../pages/Items";
+import PT_FISCAL from "../pages/gestion/Fiscal";
+import PT_FISCALIA from "../pages/gestion/Fiscalias";
 import PT_USUARIO from "../pages/catalogo/Usuarios";
 import PT_ROLE from "../pages/catalogo/Roles";
-import PT_PERMISO from "../pages/Items";
-import PT_PERSONA from "../pages/Items";
+import PT_PERMISO from "../pages/catalogo/Permisos";
+import PT_PERSONA from "../pages/catalogo/Personas";
 import PT_LOGS from "../pages/Items";
 
 export const groupedMenu = {
