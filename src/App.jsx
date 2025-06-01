@@ -1,37 +1,30 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
-import Dashboard from "./pages/Dashboard";
-import Items from "./pages/Items";
 import ProtectedRoute from "./components/ProtectedRoute";
 import ProtectedLayout from "./components/ProtectedLayout";
+import { groupedMenu } from "./config/menuConfig";
+import Items from "./pages/Items";
 
 const App = () => (
   <BrowserRouter>
     <Routes>
       <Route path="/login" element={<Login />} />
-
-      <Route
-        path="/dashboard"
-        element={
-          <ProtectedRoute>
-            <ProtectedLayout>
-              <Dashboard />
-            </ProtectedLayout>
-          </ProtectedRoute>
-        }
-      />
-
-      <Route
-        path="/items"
-        element={
-          <ProtectedRoute>
-            <ProtectedLayout>
-              <Items />
-            </ProtectedLayout>
-          </ProtectedRoute>
-        }
-      />
+      {Object.values(groupedMenu)
+        .flat()
+        .map(({ path, component: Component }) => (
+          <Route
+            key={path}
+            path={path}
+            element={
+              <ProtectedRoute>
+                <ProtectedLayout>
+                  {Component ? <Component /> : <Items />}
+                </ProtectedLayout>
+              </ProtectedRoute>
+            }
+          />
+        ))}
     </Routes>
   </BrowserRouter>
 );
