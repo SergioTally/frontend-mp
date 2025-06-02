@@ -24,7 +24,7 @@ const CustomTable = ({
   onEdit,
   onDelete,
   extraActions = [],
-  tableBitacora,
+  tableBitacora = null,
 }) => {
   const navigate = useNavigate();
   const renderCell = (item, col) => {
@@ -155,13 +155,13 @@ const CustomTable = ({
                         textAlign: "center",
                         fontSize: "0.75rem",
                       }}
-                      onClick={() => onDelete(item.ID_USUARIO || item.ID_CASO)}
+                      onClick={() => onDelete(item)}
                     >
                       Eliminar
                     </Button>
                   </Grid>
                 )}
-                {typeof tableBitacora && (
+                {tableBitacora && (
                   <Grid item xs={4}>
                     <Button
                       fullWidth
