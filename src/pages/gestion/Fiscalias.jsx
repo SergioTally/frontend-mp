@@ -222,12 +222,7 @@ const Fiscalias = () => {
               onSort={handleSort}
               onShow={handleShow}
               onEdit={(item) => confirmAction("edit", item)}
-              onDelete={(id) =>
-                confirmAction(
-                  "delete",
-                  items.find((i) => i.ID_FISCALIA === id)
-                )
-              }
+              onDelete={(item) => confirmAction("delete", item)}
             />
           </Paper>
         </Fade>

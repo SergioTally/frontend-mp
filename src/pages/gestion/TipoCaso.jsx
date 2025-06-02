@@ -208,12 +208,7 @@ const TipoCaso = () => {
               onSort={handleSort}
               onShow={(item) => handleShow(item)}
               onEdit={(item) => confirmAction("edit", item)}
-              onDelete={(id) =>
-                confirmAction(
-                  "delete",
-                  items.find((i) => i.ID_TIPO_CASO === id)
-                )
-              }
+              onDelete={(item) => confirmAction("delete", item)}
             />
           </Paper>
         </Fade>

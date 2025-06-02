@@ -188,7 +188,7 @@ const Items = () => {
       }}
     >
       <Typography variant="h4" fontWeight="bold" mb={4} color="primary">
-        👥 Usuarios del Sistema
+        👥 Plantilla del Sistema
       </Typography>
 
       {error && (
@@ -224,12 +224,7 @@ const Items = () => {
               onSort={handleSort}
               onShow={(item) => handleShow(item)}
               onEdit={(item) => confirmAction("edit", item)}
-              onDelete={(id) =>
-                confirmAction(
-                  "delete",
-                  items.find((i) => i.ID_USUARIO === id)
-                )
-              }
+              onDelete={(item) => confirmAction("delete", item)}
             />
           </Paper>
         </Fade>

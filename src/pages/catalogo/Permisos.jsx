@@ -202,12 +202,7 @@ const Permisos = () => {
               onSort={handleSort}
               onShow={(item) => handleShow(item)}
               onEdit={(item) => confirmAction("edit", item)}
-              onDelete={(id) =>
-                confirmAction(
-                  "delete",
-                  items.find((i) => i.ID_PERMISO === id)
-                )
-              }
+              onDelete={(item) => confirmAction("delete", item)}
             />
           </Paper>
         </Fade>

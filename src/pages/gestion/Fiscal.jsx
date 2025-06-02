@@ -20,7 +20,7 @@ const columnas = [
   {
     campo: "ID_PERSONA",
     label: "Persona",
-    visible: true,
+    visible: false,
     tipo: "select",
     options: "personas",
     optionValue: "ID_PERSONA",
@@ -32,7 +32,7 @@ const columnas = [
   {
     campo: "ID_FISCALIA",
     label: "Fiscalía",
-    visible: true,
+    visible: false,
     tipo: "select",
     options: "fiscalias",
     optionValue: "ID_FISCALIA",
@@ -257,12 +257,7 @@ const Fiscal = () => {
               onSort={handleSort}
               onShow={(item) => handleShow(item)}
               onEdit={(item) => confirmAction("edit", item)}
-              onDelete={(id) =>
-                confirmAction(
-                  "delete",
-                  items.find((i) => i.ID_FISCAL === id)
-                )
-              }
+              onDelete={(item) => confirmAction("delete", item)}
             />
           </Paper>
         </Fade>

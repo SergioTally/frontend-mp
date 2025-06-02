@@ -34,9 +34,15 @@ const columnas = [
     editable: true,
   },
   {
+    campo: "ROLES_ASIGNADOS",
+    label: "Roles Asignados",
+    visible: true,
+    tipo: "hidden",
+  },
+  {
     campo: "idRol",
     label: "Rol",
-    visible: true,
+    visible: false,
     tipo: "select",
     options: "roles",
     optionValue: "ID_ROLE",
@@ -73,7 +79,14 @@ const Usuarios = () => {
   const fetchItems = async () => {
     try {
       const { data } = await api.get("/ptusuario");
-      setItems(data);
+      const transformed = data.map((item) => ({
+        ...item,
+        ROLES_ASIGNADOS: item.rolesAsignados
+          .map((r) => r.ROL?.NOMBRE)
+          .filter(Boolean)
+          .join(", "),
+      }));
+      setItems(transformed);
     } catch (err) {
       setError("Error al cargar la lista de usuarios.");
     } finally {
@@ -224,12 +237,7 @@ const Usuarios = () => {
               onSort={handleSort}
               onShow={(item) => handleShow(item)}
               onEdit={(item) => confirmAction("edit", item)}
-              onDelete={(id) =>
-                confirmAction(
-                  "delete",
-                  items.find((i) => i.ID_USUARIO === id)
-                )
-              }
+              onDelete={(item) => confirmAction("delete", item)}
             />
           </Paper>
         </Fade>
