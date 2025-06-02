@@ -246,6 +246,23 @@ const Caso = () => {
     }
   };
 
+  const descargarPDF = async (id) => {
+    try {
+      const response = await api.get(`/ptCaso/${id}/informe-pdf`, {
+        responseType: "blob",
+      });
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", `informe_caso_${id}.pdf`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch {
+      showSnackbar("Error al descargar el informe PDF", "error");
+    }
+  };
+
   const modificarEstado = async () => {
     try {
       const estados = selectOptions.estados.sort(
@@ -322,12 +339,7 @@ const Caso = () => {
               onSort={handleSort}
               onShow={(item) => handleShow(item)}
               onEdit={(item) => confirmAction("edit", item)}
-              onDelete={(id) =>
-                confirmAction(
-                  "delete",
-                  items.find((i) => i.ID_CASO === id)
-                )
-              }
+              onDelete={(item) => confirmAction("delete", item)}
               extraActions={[
                 (item) => (
                   <Button
@@ -361,6 +373,17 @@ const Caso = () => {
                     }
                   >
                     Modificar Estado
+                  </Button>
+                ),
+                (item) => (
+                  <Button
+                    key="pdf"
+                    size="small"
+                    variant="outlined"
+                    color="success"
+                    onClick={() => descargarPDF(item.ID_CASO)}
+                  >
+                    Descargar Informe
                   </Button>
                 ),
               ]}
